@@ -1,11 +1,9 @@
-import { useState } from 'react'
+import DataDisplay from './assets/DataDisplay.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-    </>
+    <DataDisplay />
   )
 }
 
