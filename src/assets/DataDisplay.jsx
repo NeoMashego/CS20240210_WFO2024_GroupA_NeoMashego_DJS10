@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const FetchData = function component(){
-    const [ data, setData ] = useState(null);                //set store data
+    const [ data, setData ] = useState([]);                //set store data
     const [ loading, setLoading ] = useState(true);         //set loading 
     const [ error, setError ] = useState(null);             //set error
 
@@ -29,7 +29,13 @@ const FetchData = function component(){
 
     return(
         <div>
-            <pre> {JSON.stringify(data, null, 2)} </pre>        {/* display json data */}
+          <h1> Posts </h1>
+            {data.map((post) => (
+                <div key={post.id}>
+                    <h2>{post.id} {post.title}</h2>
+                    <p>{post.body}</p>
+                </div>
+            ))}
         </div>
     )
 }
