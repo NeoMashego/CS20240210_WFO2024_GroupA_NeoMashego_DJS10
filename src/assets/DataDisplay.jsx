@@ -11,10 +11,10 @@ const FetchData = function component(){
                 if(!response.ok){
                     throw new Error('Data fetching failed.');
                 }
-                return response.json();
+                return response.json();     //return response converted in json
             })
             .then((data) => {
-                setData(data);
+                setData(data);              //store data in state
                 setLoading(false);          //loading set to false after data is fetched
             })
             .catch((error) => {
@@ -24,22 +24,25 @@ const FetchData = function component(){
     }, [])          //empty dependency array ensures it runs only once after the component mounts
 
     if(error){
-        return <div>{error}</div>          //show error message if there is an error
+        return <h1>{error}</h1>          //show error message if there is an error
     }
 
+    const displayPosts = data.map(d => <div key={d.id}>         {/* Key used to hold unique property of list array */}
+                                            <h2>{d.id}. {d.title}</h2>      {/* What to show from the list */}
+                                            <p>{d.body}</p>
+                                            </div>)
+
+    //results that the function should carry forward
     return(
         <div>
           <h1> Posts </h1>
-            {data.map((post) => (
-                <div key={post.id}>
-                    <h2>{post.id} {post.title}</h2>
-                    <p>{post.body}</p>
-                </div>
-            ))}
+            {displayPosts}
         </div>
     )
 }
 
+
+//this is where the function above is returned to display in app.jsx
 function DataDisplay(){
     return (
         <div>
