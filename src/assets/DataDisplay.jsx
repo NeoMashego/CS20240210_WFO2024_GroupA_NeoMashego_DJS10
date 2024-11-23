@@ -27,6 +27,10 @@ const FetchData = function component(){
         return <h1>{error}</h1>          //show error message if there is an error
     }
 
+    if (loading) {
+        return <div>Loading...</div>;  // Display loading message while fetching
+      }
+
     const displayPosts = data.map(d => <div key={d.id}>         {/* Key used to hold unique property of list array */}
                                             <h2>{d.id}. {d.title}</h2>      {/* What to show from the list */}
                                             <p>{d.body}</p>
